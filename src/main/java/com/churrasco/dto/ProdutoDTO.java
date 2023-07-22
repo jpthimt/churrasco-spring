@@ -20,14 +20,21 @@ public class ProdutoDTO implements Serializable {
     @NotNull(message = "Consumo por pessoa não pode ser nulo")
     private Double consumoPorPessoa;
 
+    @NotNull(message = "Tipo de unidade não pode ser nulo")
+    private String tipoUnidade;
+
+    private Double quantidade;
+
     public ProdutoDTO() {
     }
 
-    public ProdutoDTO(Integer id, String nome, Double preco, Double consumoPorPessoa) {
+    public ProdutoDTO(Integer id, String nome, Double preco, Double consumoPorPessoa, String tipoUnidade) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
         this.consumoPorPessoa = consumoPorPessoa;
+        this.tipoUnidade = tipoUnidade;
+        this.quantidade = 0.0;
     }
 
     public Integer getId() {
@@ -60,5 +67,13 @@ public class ProdutoDTO implements Serializable {
 
     public void setConsumoPorPessoa(Double quantidadePorPessoa) {
         this.consumoPorPessoa = quantidadePorPessoa;
+    }
+
+    public String getTipoUnidade() {
+        return tipoUnidade;
+    }
+
+    public void setTipoUnidade(String tipoUnidade) {
+        this.tipoUnidade = tipoUnidade;
     }
 }

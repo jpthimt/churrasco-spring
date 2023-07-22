@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
@@ -35,9 +33,11 @@ public class ProdutoController {
     }
 
     @PostMapping
-    public ResponseEntity<Produto> addProduto(@Valid @RequestBody ProdutoDTO dto) throws URISyntaxException {
-        Produto novoProduto = produtoService.addProduto(produtoMapper.mapProdutoDTOToProduto(dto));
-        return ResponseEntity.created(new URI("/produtos/" + novoProduto.getId())).body(novoProduto);
+    public ResponseEntity<List<Produto>> addProduto(@Valid @RequestBody List<ProdutoDTO> dtoList){
+        for (ProdutoDTO dto: dtoList){
+            produtoService.addProduto(produtoMapper.mapProdutoDTOToProduto(dto));
+        }
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping("/{id}")
@@ -52,5 +52,16 @@ public class ProdutoController {
     public ResponseEntity<Void> removeProdutoId(@PathVariable Integer id) {
         produtoService.removeProdutoPorId(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/quantidade")
+    public String quantidadeProdutos() {
+        StringBuilder res = new StringBuilder();
+        produtoService.quantidadeProdutos();
+        List<Produto> produtos = produtoService.listarProdutos();
+        for(Produto produto : produtos){
+            res.append("Produto: ").append(produto.getNome()).append("Quantidade: ").append(produto.getQuantidade()).append("\n");
+        }
+        return res.toString();
     }
 }

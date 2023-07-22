@@ -17,13 +17,21 @@ public class Produto {
     @Column(nullable = false)
     private Double consumoPorPessoa;
 
+    @Column(nullable = false)
+    private String tipoUnidade;
+
+    @Column(nullable = false)
+    private Double quantidade;
+
     public Produto() {
     }
 
-    public Produto(String nome, Double preco, Double consumoPorPessoa) {
+    public Produto(String nome, Double preco, Double consumoPorPessoa, String tipoUnidade) {
         this.nome = nome;
         this.preco = preco;
         this.consumoPorPessoa = consumoPorPessoa;
+        this.tipoUnidade = tipoUnidade;
+        this.quantidade = 0.0;
     }
 
     public Integer getId() {
@@ -56,5 +64,21 @@ public class Produto {
 
     public void setConsumoPorPessoa(Double consumoPorPessoa) {
         this.consumoPorPessoa = consumoPorPessoa;
+    }
+
+    public String getTipoUnidade() {
+        return tipoUnidade;
+    }
+
+    public void setTipoUnidade(String tipoUnidade) {
+        this.tipoUnidade = tipoUnidade;
+    }
+
+    public Double getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(Double quantidade) {
+        this.quantidade = quantidade;
     }
 }

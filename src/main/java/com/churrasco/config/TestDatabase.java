@@ -9,7 +9,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -32,9 +31,9 @@ public class TestDatabase implements CommandLineRunner {
         participanteRepository.save(part2);
         participanteRepository.save(part3);
 
-        Produto prod1 = new Produto("Carne", 49.00, 0.2);
-        Produto prod2 = new Produto("Pao", 10.00, 0.1);
-        Produto prod3 = new Produto("Linguiça", 24.00, 0.1);
+        Produto prod1 = new Produto("Carne", 49.00, 0.2, "kg");
+        Produto prod2 = new Produto("Pao", 0.50, 2.0, "un");
+        Produto prod3 = new Produto("Linguiça", 24.00, 0.1, "kg");
         produtoRepository.save(prod1);
         produtoRepository.save(prod2);
         produtoRepository.save(prod3);

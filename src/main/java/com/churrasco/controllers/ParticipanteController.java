@@ -2,18 +2,14 @@ package com.churrasco.controllers;
 
 import com.churrasco.dto.ParticipanteDTO;
 import com.churrasco.entities.participante.Participante;
-import com.churrasco.entities.produto.Produto;
 import com.churrasco.mapper.ParticipanteMapper;
-import com.churrasco.mapper.ProdutoMapper;
 import com.churrasco.services.ParticipanteService;
-import com.churrasco.services.ProdutoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URI;
-import java.net.URISyntaxException;
+import java.text.NumberFormat;
 import java.util.List;
 
 @RestController
@@ -37,9 +33,11 @@ public class ParticipanteController {
     }
 
     @PostMapping
-    public ResponseEntity<Participante> addParticipante(@Valid @RequestBody ParticipanteDTO dto) throws URISyntaxException {
-        Participante novoParticipante = participanteService.addParticipante(participanteMapper.mapParticipanteDTOToParticipante(dto));
-        return ResponseEntity.created(new URI("/participantes/" + novoParticipante.getId())).body(novoParticipante);
+    public ResponseEntity<List<Participante>> addParticipante(@Valid @RequestBody List<ParticipanteDTO> dtoList){
+        for (ParticipanteDTO dto: dtoList){
+            participanteService.addParticipante(participanteMapper.mapParticipanteDTOToParticipante(dto));
+        }
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping("/{id}")
@@ -54,5 +52,13 @@ public class ParticipanteController {
     public ResponseEntity<Void> removeParticipanteId(@PathVariable Integer id){
         participanteService.removeParticipantePorId(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/valor")
+    public String calculaPrecoIndividual(){
+        return ("Valor individual: " +
+                NumberFormat.getCurrencyInstance().format(participanteService.calculaValorIndividual()) +
+                "\nValor total: " +
+                NumberFormat.getCurrencyInstance().format(participanteService.calculaValorIndividual() * participanteService.listarParticipantes().size()));
     }
 }

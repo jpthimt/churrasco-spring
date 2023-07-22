@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class ParticipanteMapper {
     public Participante mapParticipanteDTOToParticipante(ParticipanteDTO dto) {
-        Participante participante = new Participante(dto.getNome(), dto.getDataNasc());
-        return participante;
+        return new Participante(dto.getNome(), dto.getDataNasc());
     }
 }

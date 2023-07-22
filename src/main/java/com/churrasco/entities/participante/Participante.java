@@ -19,6 +19,7 @@ public class Participante {
     @Column(nullable = false)
     private LocalDate dataNasc;
 
+    @Column
     private Integer idade;
 
     public Participante() {

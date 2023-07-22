@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProdutoMapper {
     public Produto mapProdutoDTOToProduto(ProdutoDTO dto) {
-        Produto produto = new Produto(dto.getNome(), dto.getPreco(), dto.getConsumoPorPessoa());
-        return produto;
+        return new Produto(dto.getNome(), dto.getPreco(), dto.getConsumoPorPessoa(), dto.getTipoUnidade());
     }
 }
