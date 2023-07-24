@@ -24,14 +24,15 @@ public class Produto {
     private Double quantidade;
 
     public Produto() {
+        this.quantidade = 0.0;
     }
 
     public Produto(String nome, Double preco, Double consumoPorPessoa, String tipoUnidade) {
-        this.nome = nome;
-        this.preco = preco;
-        this.consumoPorPessoa = consumoPorPessoa;
-        this.tipoUnidade = tipoUnidade;
-        this.quantidade = 0.0;
+        setNome(nome);
+        setPreco(preco);
+        setConsumoPorPessoa(consumoPorPessoa);
+        setTipoUnidade(tipoUnidade);
+        setQuantidade(0.0);
     }
 
     public Integer getId() {

@@ -26,8 +26,8 @@ public class Participante {
     }
 
     public Participante(String nome, LocalDate dataNasc) {
-        this.nome = nome;
-        this.dataNasc = dataNasc;
+        setNome(nome);
+        setDataNasc(dataNasc);
         setIdade(dataNasc);
     }
 

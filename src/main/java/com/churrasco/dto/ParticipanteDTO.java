@@ -27,9 +27,9 @@ public class ParticipanteDTO implements Serializable {
     }
 
     public ParticipanteDTO(Integer id, String nome, LocalDate dataNasc) {
-        this.id = id;
-        this.nome = nome;
-        this.dataNasc = dataNasc;
+        setId(id);
+        setNome(nome);
+        setDataNasc(dataNasc);
         setIdade(dataNasc);
     }
 

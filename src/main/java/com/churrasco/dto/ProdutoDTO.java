@@ -29,12 +29,12 @@ public class ProdutoDTO implements Serializable {
     }
 
     public ProdutoDTO(Integer id, String nome, Double preco, Double consumoPorPessoa, String tipoUnidade) {
-        this.id = id;
-        this.nome = nome;
-        this.preco = preco;
-        this.consumoPorPessoa = consumoPorPessoa;
-        this.tipoUnidade = tipoUnidade;
-        this.quantidade = 0.0;
+        setId(id);
+        setNome(nome);
+        setPreco(preco);
+        setConsumoPorPessoa(consumoPorPessoa);
+        setTipoUnidade(tipoUnidade);
+        setQuantidade(0.0);
     }
 
     public Integer getId() {
@@ -75,5 +75,13 @@ public class ProdutoDTO implements Serializable {
 
     public void setTipoUnidade(String tipoUnidade) {
         this.tipoUnidade = tipoUnidade;
+    }
+
+    public Double getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(Double quantidade) {
+        this.quantidade = quantidade;
     }
 }
